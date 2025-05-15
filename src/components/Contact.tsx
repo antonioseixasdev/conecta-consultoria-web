@@ -174,11 +174,6 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Map Placeholder */}
-              <div className="mt-8 bg-gray-200 rounded-lg h-40 w-full flex items-center justify-center">
-                <p className="text-gray-500">Map Placeholder</p>
-              </div>
             </div>
           </div>
         </div>
