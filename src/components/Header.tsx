@@ -37,7 +37,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <div className="flex items-center">
           <a href="#" className="text-xl md:text-2xl font-bold text-brand-700">
-            Your<span className="text-brand-500">Company</span>
+            SXS<span className="text-brand-500">Consultoria</span>
           </a>
         </div>
 

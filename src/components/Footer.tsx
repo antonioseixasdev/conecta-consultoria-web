@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Your<span className="text-brand-400">Company</span></h3>
+            <h3 className="text-xl font-bold mb-4">SXS<span className="text-brand-400">Consultoria</span></h3>
             <p className="text-gray-300 mb-4 max-w-md">
               {t('about.mission')}
             </p>
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} YourCompany. {t('footer.rights')}
+            &copy; {currentYear} SXS Consultoria. {t('footer.rights')}
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">

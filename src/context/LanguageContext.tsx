@@ -73,9 +73,9 @@ const translations = {
     'contact.success': 'Message sent successfully!',
     'contact.error': 'Error sending message. Please try again.',
     'contact.office': 'Our Office',
-    'contact.address': 'Your Company Address, São Paulo, Brazil',
+    'contact.address': 'SXS Consultoria Address, São Paulo, Brazil',
     'contact.phone.number': '+55 (11) 1234-5678',
-    'contact.email.address': 'contact@yourcompany.com',
+    'contact.email.address': 'contact@sxsconsultoria.com',
     
     // Footer
     'footer.rights': 'All Rights Reserved',
@@ -139,9 +139,9 @@ const translations = {
     'contact.success': 'Mensagem enviada com sucesso!',
     'contact.error': 'Erro ao enviar mensagem. Por favor, tente novamente.',
     'contact.office': 'Nosso Escritório',
-    'contact.address': 'Endereço da Sua Empresa, São Paulo, Brasil',
+    'contact.address': 'Endereço da SXS Consultoria, São Paulo, Brasil',
     'contact.phone.number': '+55 (11) 1234-5678',
-    'contact.email.address': 'contato@suaempresa.com',
+    'contact.email.address': 'contato@sxsconsultoria.com',
     
     // Footer
     'footer.rights': 'Todos os Direitos Reservados',
