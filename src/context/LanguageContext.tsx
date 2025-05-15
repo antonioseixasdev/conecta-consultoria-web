@@ -73,7 +73,8 @@ const translations = {
     'contact.success': 'Message sent successfully!',
     'contact.error': 'Error sending message. Please try again.',
     'contact.office': 'Our Office',
-    'contact.address': 'SXS Consultoria Address, São Paulo, Brazil',
+    'contact.address': 'Address',
+    'contact.full.address': 'Rua Pedro Luiz do Amaral 154, Sorocaba, SP, Brazil',
     'contact.phone.number': '+55 11 97288 2522',
     'contact.email.address': 'antonioseixas@sxsconsultoria.com.br',
     
@@ -139,7 +140,8 @@ const translations = {
     'contact.success': 'Mensagem enviada com sucesso!',
     'contact.error': 'Erro ao enviar mensagem. Por favor, tente novamente.',
     'contact.office': 'Nosso Escritório',
-    'contact.address': 'Endereço da SXS Consultoria, São Paulo, Brasil',
+    'contact.address': 'Endereço',
+    'contact.full.address': 'Rua Pedro Luiz do Amaral 154, Sorocaba, SP, Brasil',
     'contact.phone.number': '+55 11 97288 2522',
     'contact.email.address': 'antonioseixas@sxsconsultoria.com.br',
     

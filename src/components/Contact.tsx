@@ -146,7 +146,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium text-gray-800 mb-1">{t('contact.address')}</h4>
-                    <p className="text-gray-600">São Paulo, Brazil</p>
+                    <p className="text-gray-600">{t('contact.full.address')}</p>
                   </div>
                 </div>
                 

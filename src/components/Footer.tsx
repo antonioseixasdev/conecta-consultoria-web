@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('contact.office')}</h3>
-            <p className="text-gray-300 mb-2">{t('contact.address')}</p>
+            <p className="text-gray-300 mb-2">{t('contact.full.address')}</p>
             <p className="text-gray-300 mb-2">{t('contact.phone.number')}</p>
             <p className="text-gray-300 mb-2">{t('contact.email.address')}</p>
           </div>
