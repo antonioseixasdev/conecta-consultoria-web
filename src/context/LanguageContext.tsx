@@ -74,8 +74,8 @@ const translations = {
     'contact.error': 'Error sending message. Please try again.',
     'contact.office': 'Our Office',
     'contact.address': 'SXS Consultoria Address, São Paulo, Brazil',
-    'contact.phone.number': '+55 (11) 1234-5678',
-    'contact.email.address': 'contact@sxsconsultoria.com',
+    'contact.phone.number': '+55 11 97288 2522',
+    'contact.email.address': 'antonioseixas@sxsconsultoria.com.br',
     
     // Footer
     'footer.rights': 'All Rights Reserved',
@@ -140,8 +140,8 @@ const translations = {
     'contact.error': 'Erro ao enviar mensagem. Por favor, tente novamente.',
     'contact.office': 'Nosso Escritório',
     'contact.address': 'Endereço da SXS Consultoria, São Paulo, Brasil',
-    'contact.phone.number': '+55 (11) 1234-5678',
-    'contact.email.address': 'contato@sxsconsultoria.com',
+    'contact.phone.number': '+55 11 97288 2522',
+    'contact.email.address': 'antonioseixas@sxsconsultoria.com.br',
     
     // Footer
     'footer.rights': 'Todos os Direitos Reservados',
