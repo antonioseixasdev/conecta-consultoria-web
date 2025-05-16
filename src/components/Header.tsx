@@ -43,16 +43,16 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="font-medium hover:text-brand-600 transition-colors">
+          <a href="#home" className="font-medium text-brand-500 hover:text-brand-600 transition-colors">
             {t('nav.home')}
           </a>
-          <a href="#services" className="font-medium hover:text-brand-600 transition-colors">
+          <a href="#services" className="font-medium text-brand-500 hover:text-brand-600 transition-colors">
             {t('nav.services')}
           </a>
-          <a href="#about" className="font-medium hover:text-brand-600 transition-colors">
+          <a href="#about" className="font-medium text-brand-500 hover:text-brand-600 transition-colors">
             {t('nav.about')}
           </a>
-          <a href="#contact" className="font-medium hover:text-brand-600 transition-colors">
+          <a href="#contact" className="font-medium text-brand-500 hover:text-brand-600 transition-colors">
             {t('nav.contact')}
           </a>
         </nav>
@@ -97,28 +97,28 @@ const Header: React.FC = () => {
           <div className="container-custom flex flex-col space-y-4">
             <a 
               href="#home" 
-              className="font-medium hover:text-brand-600 transition-colors px-2 py-2"
+              className="font-medium text-brand-500 hover:text-brand-600 transition-colors px-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t('nav.home')}
             </a>
             <a 
               href="#services" 
-              className="font-medium hover:text-brand-600 transition-colors px-2 py-2"
+              className="font-medium text-brand-500 hover:text-brand-600 transition-colors px-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t('nav.services')}
             </a>
             <a 
               href="#about" 
-              className="font-medium hover:text-brand-600 transition-colors px-2 py-2"
+              className="font-medium text-brand-500 hover:text-brand-600 transition-colors px-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t('nav.about')}
             </a>
             <a 
               href="#contact" 
-              className="font-medium hover:text-brand-600 transition-colors px-2 py-2"
+              className="font-medium text-brand-500 hover:text-brand-600 transition-colors px-2 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t('nav.contact')}
