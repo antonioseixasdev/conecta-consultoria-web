@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="text-white border-white hover:bg-white/10"
+                className="text-brand-800 border-white hover:bg-white/10 hover:text-white"
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 {t('nav.services')}
