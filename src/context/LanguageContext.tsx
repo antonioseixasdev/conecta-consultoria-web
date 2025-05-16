@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Languages
@@ -45,6 +44,8 @@ const translations = {
     'services.hedging.description': 'Protect your business from market volatility with customized hedging strategies.',
     'services.accounts.title': 'Non-Resident Accounts',
     'services.accounts.description': 'Comprehensive support for establishing and managing accounts for non-residents in Brazil.',
+    'services.ai_diagnosis.title': 'Financial Diagnostics with AI',
+    'services.ai_diagnosis.description': 'Advanced financial analysis and diagnostics using cutting-edge artificial intelligence tools to provide deeper insights and strategic recommendations.',
     
     // About
     'about.title': 'Who We Are',
@@ -112,6 +113,8 @@ const translations = {
     'services.hedging.description': 'Proteja seu negócio da volatilidade do mercado com estratégias de hedge personalizadas.',
     'services.accounts.title': 'Contas para Não Residentes',
     'services.accounts.description': 'Suporte completo para estabelecer e gerenciar contas para não residentes no Brasil.',
+    'services.ai_diagnosis.title': 'Diagnóstico Financeiro com IA',
+    'services.ai_diagnosis.description': 'Análise e diagnóstico financeiro avançado utilizando ferramentas de inteligência artificial de ponta para fornecer insights mais profundos e recomendações estratégicas.',
     
     // About
     'about.title': 'Quem Somos',
