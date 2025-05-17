@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
+  const [state, handleSubmit] = useForm("mnndwwgb");
 
   return (
     <section id="contact" className="section-padding bg-white">
@@ -19,69 +21,52 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-white rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-            <form
-              action="https://formspree.io/f/mnndwwgb"
-              method="POST"
-              className="space-y-6"
-            >
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('contact.name')} *
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full"
-                />
+            {state.succeeded ? (
+              <div className="text-center py-12">
+                <h3 className="text-2xl font-semibold mb-4">{t('contact.success') || "Mensagem enviada com sucesso!"}</h3>
+                <p className="text-gray-600">{t('contact.success.description') || "Obrigado por entrar em contato. Em breve retornaremos."}</p>
               </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('contact.email')} *
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('contact.phone')}
-                </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  className="w-full"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('contact.message')} *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  required
-                  className="w-full"
-                />
-              </div>
-              
-              <div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-brand-600 hover:bg-brand-700"
-                >
-                  {t('contact.submit')}
-                </Button>
-              </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    {t('contact.name')} *
+                  </label>
+                  <Input id="name" name="name" required className="w-full" />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    {t('contact.email')} *
+                  </label>
+                  <Input id="email" name="email" type="email" required className="w-full" />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    {t('contact.phone')}
+                  </label>
+                  <Input id="phone" name="phone" className="w-full" />
+                  <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    {t('contact.message')} *
+                  </label>
+                  <Textarea id="message" name="message" rows={6} required className="w-full" />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
+                </div>
+                <div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-brand-600 hover:bg-brand-700"
+                    disabled={state.submitting}
+                  >
+                    {state.submitting ? (t('contact.sending') || "Enviando...") : t('contact.submit')}
+                  </Button>
+                </div>
+              </form>
+            )}
           </div>
           
           {/* Contact Information */}
