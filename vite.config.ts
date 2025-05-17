@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: '/conecta-consultoria-web/', // Adicione esta linha para GitHub Pages
   server: {
     host: "::",
     port: 8080,
