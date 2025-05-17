@@ -122,7 +122,7 @@ const translations = {
     'about.mission': 'Nossa missão é fornecer soluções inovadoras e confiáveis que impulsionem o crescimento e criem valor para nossos clientes.',
 
     // Why Choose Us
-    'why.title': 'Por Que Nos Escolher',
+    'why.title': 'Porque nos escolher?',
     'why.expertise.title': 'Expertise Especializada',
     'why.expertise.description': 'Profundo conhecimento dos mercados financeiros brasileiros e negócios internacionais.',
     'why.tailored.title': 'Soluções Personalizadas',
