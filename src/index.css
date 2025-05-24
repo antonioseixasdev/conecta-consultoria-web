@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -81,11 +80,32 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box; /* Adicionado para melhor consistência de layout */
+  }
+
+  html {
+    height: 100%; /* Adicionado */
   }
   
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', sans-serif;
+    height: 100%; /* Adicionado */
+    margin: 0; /* Adicionado para remover margens padrão do navegador */
+    /* padding: 0; Se necessário, mas Tailwind pode já cuidar disso */
+    /* display: flex; Adicionado para centralizar o conteúdo caso necessário */
+    /* flex-direction: column; Adicionado para centralizar o conteúdo caso necessário */
+    /* align-items: center; Adicionado para centralizar o conteúdo caso necessário */
+    /* justify-content: center; Adicionado para centralizar o conteúdo caso necessário */
+
+  }
+
+  /* Certifique-se de que #root é o ID correto do seu elemento principal no index.html */
+  #root {
+    height: 100%; /* Faz #root ocupar a altura total do body */
+    /* As seguintes propriedades são opcionais e dependem de como seu App.tsx/App.jsx está estruturado: */
+    /* display: flex; */
+    /* flex-direction: column; */
   }
   
   .section-padding {
