@@ -4,7 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* REGRAS DE ALTURA ADICIONADAS/AJUSTADAS */
 @layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box; /* Boa prática para consistência de layout */
+  }
+
+  html {
+    height: 100%;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+    height: 100%; /* Garante que o body ocupe toda a altura do html */
+    margin: 0; /* Remove margens padrão */
+  }
+
+  /* Certifique-se de que #root é o ID correto do seu elemento 
+    principal no arquivo index.html do seu código-fonte.
+  */
+  #root {
+    height: 100%; /* Faz #root ocupar a altura total do body */
+    /* As seguintes propriedades são opcionais e podem ajudar dependendo da estrutura do seu App.tsx */
+    /* display: flex; */
+    /* flex-direction: column; */
+  }
+
+  /* Suas variáveis e outros estilos base continuam abaixo */
   :root {
     --background: 210 50% 98%;
     --foreground: 222 47% 11%;
@@ -74,38 +102,6 @@
     --border: 217 33% 18%;
     --input: 217 33% 18%;
     --ring: 213 27% 84%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-    box-sizing: border-box; /* Adicionado para melhor consistência de layout */
-  }
-
-  html {
-    height: 100%; /* Adicionado */
-  }
-  
-  body {
-    @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
-    height: 100%; /* Adicionado */
-    margin: 0; /* Adicionado para remover margens padrão do navegador */
-    /* padding: 0; Se necessário, mas Tailwind pode já cuidar disso */
-    /* display: flex; Adicionado para centralizar o conteúdo caso necessário */
-    /* flex-direction: column; Adicionado para centralizar o conteúdo caso necessário */
-    /* align-items: center; Adicionado para centralizar o conteúdo caso necessário */
-    /* justify-content: center; Adicionado para centralizar o conteúdo caso necessário */
-
-  }
-
-  /* Certifique-se de que #root é o ID correto do seu elemento principal no index.html */
-  #root {
-    height: 100%; /* Faz #root ocupar a altura total do body */
-    /* As seguintes propriedades são opcionais e dependem de como seu App.tsx/App.jsx está estruturado: */
-    /* display: flex; */
-    /* flex-direction: column; */
   }
   
   .section-padding {
