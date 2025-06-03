@@ -47,8 +47,8 @@ functions.http('criarespacogooglechat', async (req, res) => {
     console.log(`Enviando DM para o destinatário: ${seuGoogleChatUserId} usando o cliente autenticado.`);
     console.log(`Enviando mensagem para o Espaço: ${idDoEspaco}`); // Log atualizado
     const respostaApiChat = await chatApi.spaces.messages.create({
-    parent: space/AAQAc6S-6iY, // <--- USA O ID DO ESPAÇO AQUI
-    requestBody: mensagemParaChat,
+      parent: idDoEspaco, // Use a variável definida acima
+      requestBody: mensagemParaChat,
     });
 
     console.log('Mensagem enviada com sucesso para o Espaço no Google Chat:', JSON.stringify(respostaApiChat.data, null, 2)); // Log atualizado
