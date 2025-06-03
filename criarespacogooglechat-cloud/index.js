@@ -19,7 +19,6 @@ functions.http('criarespacogooglechat', async (req, res) => {
   let statusOperacao;
   let detalhesOperacao;
 
-  console.log(`Tentando enviar DM para ${seuGoogleChatUserId} com os seguintes dados:`);
   console.log(`Nome Cliente: ${nomeCliente}`);
   console.log(`Email Cliente: ${emailCliente}`);
   console.log(`Assunto Cliente: ${assuntoCliente}`);
