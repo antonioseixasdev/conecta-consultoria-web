@@ -15,7 +15,7 @@ functions.http('criarespacogooglechat', async (req, res) => {
   console.log(`Assunto Cliente: ${assuntoCliente}`);
 
   // ID do Espaço do Google Chat para onde a mensagem será enviada
-  const idDoEspaco = 'spaces/AAQAc6S-6iY';
+  const idDoEspaco = 'spaces/AAQAD4SSaW8';
 
   let statusOperacao;
   let detalhesOperacao;
