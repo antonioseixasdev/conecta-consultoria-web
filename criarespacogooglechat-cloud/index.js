@@ -3,17 +3,18 @@ const {google} = require('googleapis');
 
 functions.http('criarespacogooglechat', async (req, res) => {
   console.log('Webhook "criarespacogooglechat" foi chamado.');
-  // Log completo da requisição para depuração (especialmente para o e-mail)
-  console.log('Corpo completo da requisição do Dialogflow CX:', JSON.stringify(req.body, null, 2));
+
+  // ----> ESTA É A LINHA DE LOG CRUCIAL ADICIONADA PARA DEBUG <----
+  console.log('Parâmetros da sessão recebidos do Dialogflow CX:', JSON.stringify(req.body.sessionInfo.parameters, null, 2));
 
   // Extrai os parâmetros da sessão do Dialogflow CX
   const nomeCliente = req.body.sessionInfo.parameters.nome || 'Não informado pelo chatbot';
-  const emailCliente = req.body.sessionInfo.parameters.email || 'Não informado pelo chatbot'; // Verifique nos logs se este valor está chegando do site
+  const emailCliente = req.body.sessionInfo.parameters.email || 'Não informado pelo chatbot';
   const assuntoCliente = req.body.sessionInfo.parameters.assunto || 'Não informado pelo chatbot';
 
-  // Loga os dados recebidos (opcional, para debug)
+  // Loga os dados extraídos (para debug)
   console.log(`Nome Cliente: ${nomeCliente}`);
-  console.log(`Email Cliente: ${emailCliente}`); // Este log mostrará o que foi extraído
+  console.log(`Email Cliente: ${emailCliente}`);
   console.log(`Assunto Cliente: ${assuntoCliente}`);
 
   // ID do Espaço do Google Chat para onde a mensagem será enviada
@@ -21,7 +22,7 @@ functions.http('criarespacogooglechat', async (req, res) => {
 
   let statusOperacao;
   let detalhesOperacao;
-  let linkMensagemGoogleChat = null; // Inicializa a variável do link
+  let linkMensagemGoogleChat = null; 
 
   try {
     // Autenticação com a API do Google Chat
@@ -46,22 +47,18 @@ functions.http('criarespacogooglechat', async (req, res) => {
       requestBody: mensagemParaChat,
     });
 
-    const nomeMensagemCompleto = respostaApiChat.data.name; // Ex: "spaces/AAQAD4SSaW8/messages/MSG_ID.MSG_ID_Thread"
+    const nomeMensagemCompleto = respostaApiChat.data.name;
     console.log('Mensagem enviada com sucesso para o Espaço no Google Chat:', JSON.stringify(respostaApiChat.data, null, 2));
     statusOperacao = "MENSAGEM_ENVIADA_COM_SUCESSO_ESPACO";
     detalhesOperacao = `Mensagem enviada para o Espaço. ID da Mensagem: ${nomeMensagemCompleto}`;
 
-    // Construir o link direto para a mensagem
     if (nomeMensagemCompleto) {
       const partesNomeMensagem = nomeMensagemCompleto.split('/');
       const idEspacoSemPrefixo = idDoEspaco.split('/')[1];
-      // A parte do ID da mensagem no link é o que vem depois de "messages/"
       const idMensagemParaLink = partesNomeMensagem[partesNomeMensagem.length -1];
 
       if (idEspacoSemPrefixo && idMensagemParaLink) {
         linkMensagemGoogleChat = `https://chat.google.com/room/${idEspacoSemPrefixo}/${idMensagemParaLink}`;
-        // Se quiser adicionar o ?cls=10 que você observou:
-        // linkMensagemGoogleChat = `https://chat.google.com/room/${idEspacoSemPrefixo}/${idMensagemParaLink}?cls=10`;
         console.log(`Link direto para a mensagem: ${linkMensagemGoogleChat}`);
       }
     }
@@ -84,11 +81,10 @@ functions.http('criarespacogooglechat', async (req, res) => {
       console.error('Erro não estruturado ou de rede:', error);
     }
 
-    statusOperacao = "ERRO_AO_ENVIAR_MENSAGEM_CHAT"; // Etiqueta de erro atualizada
+    statusOperacao = "ERRO_AO_ENVIAR_MENSAGEM_CHAT"; 
     detalhesOperacao = errorMessage;
   }
 
-  // Prepara os parâmetros de resposta para o Dialogflow CX
   const parametrosResposta = {
     "statusGoogleChat": statusOperacao,
     "detalhesGoogleChat": detalhesOperacao
@@ -98,7 +94,6 @@ functions.http('criarespacogooglechat', async (req, res) => {
     parametrosResposta["linkMensagemGoogleChat"] = linkMensagemGoogleChat;
   }
 
-  // Responde ao Dialogflow CX
   const webhookResponse = {
     sessionInfo: {
       parameters: parametrosResposta
