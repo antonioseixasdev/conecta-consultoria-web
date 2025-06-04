@@ -9,7 +9,7 @@ functions.http('criarespacogooglechat', async (req, res) => {
 
   // Extrai os parâmetros da sessão do Dialogflow CX
   const nomeCliente = req.body.sessionInfo.parameters.nome || 'Não informado pelo chatbot';
-  const emailCliente = req.body.sessionInfo.parameters.email || 'Não informado pelo chatbot';
+  const emailCliente = req.body.sessionInfo.parameters.e-mail || 'Não informado pelo chatbot';
   const assuntoCliente = req.body.sessionInfo.parameters.assunto || 'Não informado pelo chatbot';
 
   // Loga os dados extraídos (para debug)
