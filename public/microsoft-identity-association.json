@@ -1,14 +1,5 @@
 {
   "Description": "Arquivo de verificação de propriedade do domínio para Microsoft 365 local na raiz do site",
-  "Domain": "sxsconsultoria.com.br",
+  "Domain": "www.sxsconsultoria.com.br",
   "Id": "9b9ef829-cec2-47c2-a2af-d7540c7d79b5"
-}
-{
-  "Version": "1.0",
-  "Name": "Microsoft Identity Association",
-  "Type": "Microsoft.Identity",
-  "Properties": {
-    "DomainName": "sxsconsultoria.com.br",
-    "Id": "9b9ef829-cec2-47c2-a2af-d7540c7d79b5"
-  }
 }
