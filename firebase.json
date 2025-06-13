@@ -8,6 +8,10 @@
     ],
     "rewrites": [
       {
+        "source": "!/ms55304045.txt",
+        "destination": "/ms55304045.txt"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
