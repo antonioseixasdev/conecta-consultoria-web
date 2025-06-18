@@ -1,98 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Financial & Business Consulting | SXS Consultoria</title>
-    <meta name="description" content="Consultoria especializada em desenvolvimento de negócios e serviços financeiros para empresas com operações globais. Serviços incluem operações de câmbio, financiamento, derivativos, hedge e contas para não residentes." />
-    <meta name="author" content="SXS Consultoria" />
-
-    <meta property="og:title" content="Financial & Business Consulting | SXS Consultoria" />
-    <meta property="og:description" content="Consultoria especializada em desenvolvimento de negócios e serviços financeiros para empresas com operações globais." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://www.sxsconsultoria.com.br/images/logo.png" />
-
-    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-    <script type="module" crossorigin src="/assets/index-Ba9rLV_b.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DqYYCM1N.css">
-  </head>
-  <body>
-    <div id="root"></div>
- 
-    
-    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-    <df-messenger
-      project-id="conecta-sxs-site"
-      agent-id="a01c3ebc-89ea-47b0-aae0-0696ff7861b4"
-      language-code="pt-br"
-      max-query-length="-1"
-      allow-feedback="all">
-      <df-messenger-chat-bubble
-        chat-title="Assistente Virtual">
-      </df-messenger-chat-bubble>
-    </df-messenger>
-    <style>
-      df-messenger {
-        z-index: 999;
-        position: fixed;
-        --df-messenger-font-color: #000;
-        --df-messenger-font-family: Google Sans;
-        --df-messenger-chat-background: #f3f6fc;
-        --df-messenger-message-user-background: #d3e3fd;
-        --df-messenger-message-bot-background: #fff;
-        bottom: 16px;
-        right: 16px;
-      }
-      
-      /* Adicionar estilos para esconder elementos de rich content e links */
-      df-messenger-chat [data-type="match_citations"] {
-        display: none !important;
-      }
-      
-      df-messenger-chat a {
-        display: none !important;
-      }
-    </style>
-    
-    <!-- Script para filtrar as respostas -->
-    <script>
-      document.addEventListener('df-response-received', (event ) => {
-        const response = event.detail.response;
-        
-        // Verificar se há rich content com citações
-        if (response.richContent && 
-            response.richContent[0] && 
-            response.richContent[0][0] && 
-            response.richContent[0][0].citations) {
-          
-          // Encontrar a citação mais curta (provavelmente a FAQ)
-          let shortestCitation = null;
-          let minLength = Infinity;
-          
-          response.richContent[0][0].citations.forEach(citation => {
-            if (citation.subtitle && citation.subtitle.length < minLength) {
-              minLength = citation.subtitle.length;
-              shortestCitation = citation.subtitle;
-            }
-          });
-          
-          if (shortestCitation) {
-            // Limpar o texto da citação (remover título da pergunta se existir)
-            let cleanText = shortestCitation;
-            if (cleanText.includes('\n\n')) {
-              cleanText = cleanText.split('\n\n')[1]; // Pegar apenas a resposta após a pergunta
-            }
-            
-            // Substituir a resposta completa pela citação mais curta
-            const dfMessenger = document.querySelector('df-messenger');
-            dfMessenger.renderCustomText(cleanText);
-            
-            // Impedir que a resposta original seja exibida
-            event.preventDefault();
-            event.stopPropagation();
-          }
-        }
-      });
-    </script>
-  </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat n8n</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat Simples</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Digite sua mensagem...">
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
