@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.querySelector('button[type="submit"]');
 
     // URL real do webhook do n8n
-    const N8N_WEBHOOK_URL = 'https://sxsconsultoria.app.n8n.cloud/webhook-test/e35b16d3-bb8d-44a5-9294-2982cfb286c7';
+    const N8N_WEBHOOK_URL = 'https://sxsconsultoria.app.n8n.cloud/webhook/e35b16d3-bb8d-44a5-9294-2982cfb286c7';
 
     function appendMessage(text, sender) {
         const messageElement = document.createElement('div');
