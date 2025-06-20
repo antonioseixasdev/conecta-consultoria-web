@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Função para gerar um sessionId único por usuário (pode ser aprimorado)
+    // Função para gerar um sessionId único por usuário
     function getSessionId() {
         let sessionId = localStorage.getItem('chatSessionId');
         if (!sessionId) {
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            // Agora aceita texto puro como resposta do n8n
-            const responseText = await response.text();
+            const responseJson = await response.json();
+            const responseText = responseJson.output || JSON.stringify(responseJson);
             appendMessage(responseText, 'received');
 
         } catch (error) {
