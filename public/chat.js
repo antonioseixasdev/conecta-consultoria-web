@@ -8,9 +8,49 @@ document.addEventListener('DOMContentLoaded', () => {
     function appendMessage(text, sender) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
-        messageElement.textContent = text;
+        messageElement.innerHTML = formatText(text); // Aplica formatação
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function formatText(text) {
+        // Converte **negrito**
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+        // Divide em linhas e trata listas e parágrafos
+        const lines = text.split('\n').map(line => {
+            if (line.trim().startsWith('- ')) {
+                return '<li>' + line.trim().substring(2) + '</li>';
+            } else {
+                return '<p>' + line.trim() + '</p>';
+            }
+        });
+
+        // Agrupa <li> em uma <ul> se houver
+        const grouped = [];
+        let inList = false;
+
+        lines.forEach(line => {
+            if (line.startsWith('<li>')) {
+                if (!inList) {
+                    grouped.push('<ul>');
+                    inList = true;
+                }
+                grouped.push(line);
+            } else {
+                if (inList) {
+                    grouped.push('</ul>');
+                    inList = false;
+                }
+                grouped.push(line);
+            }
+        });
+
+        if (inList) {
+            grouped.push('</ul>');
+        }
+
+        return grouped.join('');
     }
 
     function getSessionId() {
@@ -50,19 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
             let cleanedMessage = rawText;
 
             try {
-                // 1ª tentativa: parsear como JSON direto
                 let parsed = JSON.parse(rawText);
 
-                // Se ainda for string, tenta parsear de novo (JSON dentro de JSON)
                 if (typeof parsed === 'string') {
                     parsed = JSON.parse(parsed);
                 }
 
-                // Se existir .output, usamos ele; senão tentamos mostrar algo útil
                 cleanedMessage = parsed.output || parsed.message || JSON.stringify(parsed);
 
             } catch (e) {
-                console.warn("⚠️ Falha ao parsear JSON, exibindo resposta crua.");
+                console.warn("⚠️ Falha ao parsear JSON, exibindo texto cru.");
             }
 
             appendMessage(cleanedMessage, 'received');
@@ -87,7 +124,3 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageText = messageInput.value.trim();
             if (messageText) {
                 sendMessageToN8n(messageText);
-            }
-        }
-    });
-});
