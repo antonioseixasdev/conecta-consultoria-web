@@ -8,49 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function appendMessage(text, sender) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
-        messageElement.innerHTML = formatText(text); // Aplica formatação
+        messageElement.innerHTML = formatText(text);
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     function formatText(text) {
-        // Converte **negrito**
+        // Negrito: **texto** → <strong>texto</strong>
         text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-        // Divide em linhas e trata listas e parágrafos
-        const lines = text.split('\n').map(line => {
-            if (line.trim().startsWith('- ')) {
-                return '<li>' + line.trim().substring(2) + '</li>';
-            } else {
-                return '<p>' + line.trim() + '</p>';
+        // Divide por quebra de linha dupla para separar blocos
+        const blocks = text.split(/\n\s*\n/);
+
+        return blocks.map(block => {
+            const trimmed = block.trim();
+
+            // Se for uma lista (linhas com "- "), trata como <ul><li>
+            if (/^- /.test(trimmed)) {
+                const items = trimmed.split('\n').map(line =>
+                    '<li>' + line.replace(/^- /, '').trim() + '</li>'
+                ).join('');
+                return `<ul class="chat-list">${items}</ul>`;
             }
-        });
 
-        // Agrupa <li> em uma <ul> se houver
-        const grouped = [];
-        let inList = false;
-
-        lines.forEach(line => {
-            if (line.startsWith('<li>')) {
-                if (!inList) {
-                    grouped.push('<ul>');
-                    inList = true;
-                }
-                grouped.push(line);
-            } else {
-                if (inList) {
-                    grouped.push('</ul>');
-                    inList = false;
-                }
-                grouped.push(line);
-            }
-        });
-
-        if (inList) {
-            grouped.push('</ul>');
-        }
-
-        return grouped.join('');
+            // Se for parágrafo comum
+            return `<p class="chat-paragraph">${trimmed}</p>`;
+        }).join('');
     }
 
     function getSessionId() {
@@ -124,3 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageText = messageInput.value.trim();
             if (messageText) {
                 sendMessageToN8n(messageText);
+            }
+        }
+    });
+});
