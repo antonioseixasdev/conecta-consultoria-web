@@ -45,28 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const rawText = await response.text();
-            let responseText = rawText;
+            console.log("🧾 Resposta bruta do backend:", rawText);
+
+            let cleanedMessage = rawText;
 
             try {
-                // Tenta parsear o texto direto
-                const parsed = JSON.parse(rawText);
+                // 1ª tentativa: parsear como JSON direto
+                let parsed = JSON.parse(rawText);
 
-                // Caso venha como string JSON serializada, tenta parsear novamente
+                // Se ainda for string, tenta parsear de novo (JSON dentro de JSON)
                 if (typeof parsed === 'string') {
-                    const innerParsed = JSON.parse(parsed);
-                    responseText = innerParsed.output || parsed;
-                } else {
-                    responseText = parsed.output || rawText;
+                    parsed = JSON.parse(parsed);
                 }
+
+                // Se existir .output, usamos ele; senão tentamos mostrar algo útil
+                cleanedMessage = parsed.output || parsed.message || JSON.stringify(parsed);
+
             } catch (e) {
-                console.warn('Não foi possível fazer parsing do JSON:', e);
+                console.warn("⚠️ Falha ao parsear JSON, exibindo resposta crua.");
             }
 
-            appendMessage(responseText, 'received');
+            appendMessage(cleanedMessage, 'received');
 
         } catch (error) {
             console.error('Erro ao enviar mensagem:', error);
-            appendMessage(`Erro: Não foi possível conectar ao webhook. ${error.message}`, 'received');
+            appendMessage(`Erro: Não foi possível conectar ao servidor. ${error.message}`, 'received');
         }
     }
 
