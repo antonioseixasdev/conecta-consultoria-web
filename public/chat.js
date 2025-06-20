@@ -46,14 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const responseData = await response.json();
-
-            if (responseData && responseData.reply) {
-                appendMessage(responseData.reply, 'received');
-            } else {
-                appendMessage(JSON.stringify(responseData), 'received');
-                console.warn('Received unexpected response structure from n8n:', responseData);
-            }
+            // Agora aceita texto puro como resposta do n8n
+            const responseText = await response.text();
+            appendMessage(responseText, 'received');
 
         } catch (error) {
             console.error('Error sending message to n8n:', error);
