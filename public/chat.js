@@ -3,18 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('chat-input');
     const sendButton = document.querySelector('button[type="submit"]');
 
-    // URL real do webhook do n8n
     const N8N_WEBHOOK_URL = 'https://sxsconsultoria.app.n8n.cloud/webhook/e35b16d3-bb8d-44a5-9294-2982cfb286c7';
 
     function appendMessage(text, sender) {
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message', sender); // sender: 'sent' ou 'received'
+        messageElement.classList.add('message', sender);
         messageElement.textContent = text;
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Função para gerar um sessionId único por usuário
     function getSessionId() {
         let sessionId = localStorage.getItem('chatSessionId');
         if (!sessionId) {
@@ -46,12 +44,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const responseJson = await response.json();
-            const responseText = responseJson.output || JSON.stringify(responseJson);
+            const rawText = await response.text();
+            let responseText = rawText;
+
+            try {
+                // Tenta parsear o texto direto
+                const parsed = JSON.parse(rawText);
+
+                // Caso venha como string JSON serializada, tenta parsear novamente
+                if (typeof parsed === 'string') {
+                    const innerParsed = JSON.parse(parsed);
+                    responseText = innerParsed.output || parsed;
+                } else {
+                    responseText = parsed.output || rawText;
+                }
+            } catch (e) {
+                console.warn('Não foi possível fazer parsing do JSON:', e);
+            }
+
             appendMessage(responseText, 'received');
 
         } catch (error) {
-            console.error('Error sending message to n8n:', error);
+            console.error('Erro ao enviar mensagem:', error);
             appendMessage(`Erro: Não foi possível conectar ao webhook. ${error.message}`, 'received');
         }
     }
@@ -73,7 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    // Mensagem inicial opcional
-    // appendMessage("Olá! Como posso ajudar?", 'received');
 });
