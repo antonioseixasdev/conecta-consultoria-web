@@ -123,3 +123,26 @@
   opacity: 1;
   transform: translateY(0);
 }
+@layer components {
+  .blog {
+    @apply max-w-3xl mx-auto bg-white rounded-lg shadow p-8 my-12;
+  }
+  .blog h1 {
+    @apply text-3xl font-bold text-primary mb-8 text-center;
+  }
+  .blog article {
+    @apply mb-12 border-b border-border pb-8;
+  }
+  .blog article:last-child {
+    @apply border-b-0;
+  }
+  .blog h2 {
+    @apply text-2xl font-semibold text-foreground mt-0 mb-2;
+  }
+  .blog time {
+    @apply text-muted-foreground text-sm mb-4 block;
+  }
+  .blog p {
+    @apply text-base leading-relaxed text-foreground mb-4;
+  }
+}

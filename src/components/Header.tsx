@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/context/LanguageContext';
@@ -54,6 +53,13 @@ const Header: React.FC = () => {
           </a>
           <a href="#contact" className="font-medium text-brand-500 hover:text-brand-600 transition-colors">
             {t('nav.contact')}
+          </a>
+          {/* Blog destacado */}
+          <a
+            href="/blog.html"
+            className="font-semibold text-white bg-orange-500 px-4 py-2 rounded hover:bg-orange-600 transition-colors shadow"
+          >
+            Blog
           </a>
         </nav>
 
@@ -122,6 +128,14 @@ const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t('nav.contact')}
+            </a>
+            {/* Blog destacado no mobile */}
+            <a
+              href="/blog.html"
+              className="font-semibold text-white bg-orange-500 px-4 py-2 rounded hover:bg-orange-600 transition-colors shadow"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blog
             </a>
           </div>
         </div>
