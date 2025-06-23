@@ -4,52 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog SXS</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/src/index.css" />
 </head>
-<body>
+<body class="bg-background text-foreground font-sans">
   <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
+    <!-- Inclua aqui o mesmo header/menu do seu site principal, se possível via include ou copie o HTML do Header.tsx renderizado -->
+    <!-- Exemplo simplificado: -->
+    <nav class="container-custom flex items-center justify-between py-6">
+      <a href="index.html" class="text-xl md:text-2xl font-bold text-brand-700">
+        SXS<span class="text-brand-500">Consultoria</span>
+      </a>
+      <ul class="flex gap-4 items-center">
+        <li><a href="/index.html" class="hover:text-primary">Início</a></li>
+        <li><a href="/servicos.html" class="hover:text-primary">Serviços</a></li>
+        <li><a href="/contato.html" class="hover:text-primary">Contato</a></li>
+        <li>
+          <a href="/blog.html" class="font-semibold text-white bg-orange-500 px-4 py-2 rounded hover:bg-orange-600 transition-colors shadow">Blog</a>
+        </li>
       </ul>
     </nav>
   </header>
   <main>
-    <section class="blog">
-      <h1>Blog SXS</h1>
-      <article>
-        <h2>IA não é o futuro — é o que sua empresa está perdendo no presente</h2>
-        <time datetime="2025-06-23">23 de junho de 2025</time>
-        <p>
+    <section class="container-custom max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-lg shadow p-8 my-12">
+      <h1 class="text-3xl font-bold text-primary mb-8 text-center">Blog SXS</h1>
+      <article class="mb-12 border-b border-border pb-8">
+        <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
+          IA não é o futuro — é o que sua empresa está perdendo no presente
+        </h2>
+        <time class="text-muted-foreground text-sm mb-4 block" datetime="2025-06-23">23 de junho de 2025</time>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Após 30 anos atuando em setores tão distintos quanto varejo de moda, indústria de pneus e distribuição de combustíveis, encontrei na inteligência artificial uma nova fronteira — não de ruptura, mas de evolução. O que antes exigia dias de análise e reuniões pode hoje ser estruturado em minutos. E o mais importante: sem excluir ninguém do processo.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           A cada semana, me impressiono mais com a profundidade com que os modelos de linguagem conseguem compreender, estruturar e auxiliar decisões reais. Sim, há diferenças relevantes entre as ferramentas gratuitas e as versões profissionais — mas é preciso ir além do senso comum. IA não foi criada apenas para gerar imagens ou revisar textos. Ela é, acima de tudo, uma alavanca de produtividade.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Na minha visão, a grande revolução está justamente aí: a IA tem o potencial de amplificar competências humanas e simplificar processos empresariais como nunca vimos antes. Podemos estar diante de um divisor de águas em que decisões se tornam mais conscientes, equipes mais conectadas — e, talvez, até tenhamos mais tempo para a vida fora do trabalho.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Ao longo dessas três décadas, percebi o quanto a dificuldade em planejar e integrar times ainda é um dos grandes gargalos das empresas brasileiras. Especialmente nas pequenas e médias, o que se vê é uma rotina de urgências e improvisos — sempre apagando incêndios, em vez de antecipar soluções.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Claro que o contexto do país contribui: o custo do dinheiro, a complexidade tributária, a regulação excessiva... tudo isso cria o ambiente ideal para a improdutividade e a concentração de mercado. Mas é justamente nesse cenário que a tecnologia surge como uma janela de oportunidade.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Hoje, ferramentas antes restritas às grandes corporações estão disponíveis para qualquer empresa, a um custo acessível e com resultados concretos. Automatizações, assistentes inteligentes e sistemas integrados já podem transformar rotinas de gestão e acelerar resultados.
         </p>
-        <p>
+        <p class="text-base leading-relaxed text-foreground mb-4">
           Estou iniciando uma nova fase da minha vida profissional, com projetos que unem tecnologia e inteligência artificial para ajudar empresas a crescerem com organização, propósito e mais leveza. Se você acredita que sua empresa ou setor pode se beneficiar disso, vamos conversar.
         </p>
       </article>
       <!-- Adicione mais artigos aqui -->
     </section>
   </main>
-  <footer>
-    <p>&copy; 2025 SXS Consultoria</p>
+  <footer class="text-center text-sm text-muted-foreground py-8">
+    &copy; 2025 SXS Consultoria
   </footer>
 </body>
 </html>
