@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { BrainCircuit } from 'lucide-react';
+import { NewsFeed } from './NewsFeed';
 
 const Services: React.FC = () => {
   const { t } = useLanguage();
@@ -94,6 +94,9 @@ const Services: React.FC = () => {
   return (
     <section id="services" className="section-padding bg-white">
       <div className="container-custom">
+        {/* Caixa de notícias no topo */}
+        <NewsFeed />
+
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('services.title')}</h2>
           <p className="text-lg text-gray-600">{t('services.subtitle')}</p>
