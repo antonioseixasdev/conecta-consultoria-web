@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 type NewsItem = {
   title: string;
   date: string;
+  dateFormatted?: string;
   source: string;
   category: string;
   summary: string;
@@ -28,6 +29,7 @@ export const NewsFeed: React.FC = () => {
             rows.map((row: any) => ({
               title: row.c[0]?.v || "",
               date: row.c[1]?.v || "",
+              dateFormatted: row.c[1]?.f || "",
               source: row.c[2]?.v || "",
               category: row.c[3]?.v || "",
               summary: row.c[4]?.v || "",
@@ -81,7 +83,7 @@ export const NewsFeed: React.FC = () => {
                 gap: "1.5rem",
               }}
             >
-              <time>{item.date}</time>
+              <time>{item.dateFormatted || item.date}</time>
               <span className="news-category" style={{ fontWeight: "bold", color: "#f59e42" }}>
                 {item.category}
               </span>
