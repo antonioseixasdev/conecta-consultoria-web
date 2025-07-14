@@ -9,10 +9,9 @@ function formatDate(dateValue) {
   }
   if (typeof dateValue === 'number') {
     // Google Sheets: dias desde 1899-12-30
-    const msPerDay = 24 * 60 * 60 * 1000;
     const baseDate = new Date(Date.UTC(1899, 11, 30));
-    const date = new Date(baseDate.getTime() + dateValue * msPerDay);
-    return date.toLocaleDateString('pt-BR');
+    baseDate.setUTCDate(baseDate.getUTCDate() + dateValue);
+    return baseDate.toLocaleDateString('pt-BR');
   }
   return dateValue || '';
 }
