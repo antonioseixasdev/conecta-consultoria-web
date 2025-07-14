@@ -3,17 +3,16 @@ const SHEET_NAME = 'FEEDSXS'; // Nome da aba
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 
 function formatDate(dateValue) {
-  // Se vier como string, tenta converter direto
   if (typeof dateValue === 'string') {
     const date = new Date(dateValue);
     if (!isNaN(date)) return date.toLocaleDateString('pt-BR');
   }
-  // Se vier como número (serial do Google Sheets)
   if (typeof dateValue === 'number') {
     // Google Sheets: dias desde 1899-12-30
+    const msPerDay = 24 * 60 * 60 * 1000;
     const baseDate = new Date(Date.UTC(1899, 11, 30));
-    baseDate.setUTCDate(baseDate.getUTCDate() + dateValue);
-    return baseDate.toLocaleDateString('pt-BR');
+    const date = new Date(baseDate.getTime() + dateValue * msPerDay);
+    return date.toLocaleDateString('pt-BR');
   }
   return dateValue || '';
 }
