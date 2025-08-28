@@ -5,6 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog SXS</title>
   <link rel="stylesheet" href="/assets/index-DjKygp5i.css" />
+  <style>
+    /* Estilos para o índice lateral */
+    .blog-sidebar {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      width: 280px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .blog-sidebar.hidden {
+      transform: translateX(-320px);
+    }
+    
+    .sidebar-toggle {
+      position: fixed;
+      top: 120px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background: #f97316;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      z-index: 1001;
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar-toggle:hover {
+      background: #ea580c;
+      transform: scale(1.1);
+    }
+    
+    .sidebar-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .timeline-month {
+      margin-bottom: 24px;
+    }
+    
+    .month-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .article-link {
+      display: block;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 13px;
+      line-height: 1.4;
+      border-radius: 6px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .article-link:hover {
+      background: #f3f4f6;
+      border-left-color: #f97316;
+      transform: translateX(4px);
+    }
+    
+    .article-link.active {
+      background: #fef3e2;
+      border-left-color: #f97316;
+      color: #ea580c;
+      font-weight: 500;
+    }
+    
+    .article-date {
+      font-size: 11px;
+      color: #9ca3af;
+      display: block;
+      margin-top: 2px;
+    }
+    
+    /* Ajuste para o conteúdo principal */
+    .main-content {
+      margin-left: 320px;
+      transition: margin-left 0.3s ease;
+    }
+    
+    .main-content.expanded {
+      margin-left: 0;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 1200px) {
+      .blog-sidebar {
+        left: -300px;
+      }
+      
+      .blog-sidebar.visible {
+        left: 20px;
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+      
+      .sidebar-toggle {
+        left: 20px;
+        background: #f97316;
+      }
+    }
+    
+    /* Scrollbar customizada */
+    .blog-sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .blog-sidebar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+    
+    .blog-sidebar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    
+    .blog-sidebar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
 </head>
 <body class="bg-background text-foreground font-sans">
   <header>
@@ -20,12 +175,95 @@
       </ul>
     </nav>
   </header>
-  <main>
+  
+  <!-- Botão de toggle do índice -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()" title="Mostrar/Ocultar Índice">
+    📚
+  </button>
+  
+  <!-- Índice lateral / Linha do tempo -->
+  <nav class="blog-sidebar" id="blogSidebar">
+    <div class="sidebar-title">
+      📅 Linha do Tempo
+    </div>
+    
+    <div class="timeline-month">
+      <div class="month-header">
+        📆 Agosto 2025
+      </div>
+      <a href="#artigo-codigos-antigos" class="article-link" data-article="artigo-codigos-antigos">
+        Códigos Antigos, Sistemas Modernos
+        <span class="article-date">26 de agosto</span>
+      </a>
+      <a href="#artigo-espelho-silicio" class="article-link" data-article="artigo-espelho-silicio">
+        O Espelho de Silício
+        <span class="article-date">23 de agosto</span>
+      </a>
+      <a href="#artigo-brasil-ia" class="article-link" data-article="artigo-brasil-ia">
+        Entre o Desconhecimento e a Disrupção
+        <span class="article-date">19 de agosto</span>
+      </a>
+      <a href="#artigo-docknest" class="article-link" data-article="artigo-docknest">
+        Desenvolver um App Sozinho
+        <span class="article-date">14 de agosto</span>
+      </a>
+      <a href="#artigo-30-anos" class="article-link" data-article="artigo-30-anos">
+        30 Anos de Trabalho, 20 Anos de Amor
+        <span class="article-date">6 de agosto</span>
+      </a>
+      <a href="#artigo-agentes-inteligentes" class="article-link" data-article="artigo-agentes-inteligentes">
+        Agentes Inteligentes
+        <span class="article-date">1º de agosto</span>
+      </a>
+    </div>
+    
+    <div class="timeline-month">
+      <div class="month-header">
+        📆 Julho 2025
+      </div>
+      <a href="#artigo-zona-conforto" class="article-link" data-article="artigo-zona-conforto">
+        Zona de Conforto, Resistência e Autoengano
+        <span class="article-date">25 de julho</span>
+      </a>
+      <a href="#artigo-gigantes-brigam" class="article-link" data-article="artigo-gigantes-brigam">
+        Enquanto os Gigantes Brigam
+        <span class="article-date">Julho 2025</span>
+      </a>
+      <a href="#artigo-ia-financas" class="article-link" data-article="artigo-ia-financas">
+        IA em Finanças Corporativas
+        <span class="article-date">14 de julho</span>
+      </a>
+      <a href="#artigo-guerra-300-milhoes" class="article-link" data-article="artigo-guerra-300-milhoes">
+        A Guerra dos US$ 300 Milhões
+        <span class="article-date">8 de julho</span>
+      </a>
+      <a href="#artigo-tecnologia-burocracia" class="article-link" data-article="artigo-tecnologia-burocracia">
+        Tecnologia, Burocracia e a Falácia
+        <span class="article-date">3 de julho</span>
+      </a>
+    </div>
+    
+    <div class="timeline-month">
+      <div class="month-header">
+        📆 Junho 2025
+      </div>
+      <a href="#artigo-empatia-escala" class="article-link" data-article="artigo-empatia-escala">
+        Empatia em Escala
+        <span class="article-date">26 de junho</span>
+      </a>
+      <a href="#artigo-ia-presente" class="article-link" data-article="artigo-ia-presente">
+        IA não é o futuro — é o presente
+        <span class="article-date">23 de junho</span>
+      </a>
+    </div>
+  </nav>
+  
+  <main class="main-content" id="mainContent">
     <section class="container-custom max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-lg shadow p-8 my-12">
       <h1 class="text-3xl font-bold text-primary mb-8 text-center">Blog SXS</h1>
 
       <!-- NOVO ARTIGO CÓDIGOS ANTIGOS NO TOPO -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-codigos-antigos" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Códigos Antigos, Sistemas Modernos: O que a Neurociência, a Filosofia e a Inovação Têm em Comum
         </h2>
@@ -127,12 +365,12 @@
         </p>
         <p class="text-base leading-relaxed text-foreground mb-4 italic text-right">
           <em>Antonio Seixas</em><br>
-          <em>Consultor em Finanças, Tecnologia e Transformação com Propósito</em>
+          <em>Consultor em Finanças, Tecnologia e Transformação Digital</em>
         </p>
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-espelho-silicio" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           O Espelho de Silício: A Nova IA Não É o Que Parece Ser — E Talvez Isso Seja o Ponto
         </h2>
@@ -191,7 +429,7 @@
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-brasil-ia" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Entre o Desconhecimento e a Disrupção: O Brasil, a IA e a Nova Ordem da Inovação
         </h2>
@@ -245,7 +483,7 @@
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-docknest" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Desenvolver um App Sozinho: Complexo, Sim. Possível, Também.
         </h2>
@@ -335,7 +573,7 @@
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-30-anos" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           30 Anos de Trabalho, 20 Anos de Amor e o Recomeço que Escolhi
         </h2>
@@ -397,7 +635,7 @@
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-agentes-inteligentes" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Agentes Inteligentes: Por que as Big Techs estão apostando tão alto nessa nova geração de IAs?
         </h2>
@@ -432,7 +670,7 @@
       </article>
 
       <!-- ARTIGO ANTERIOR -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-zona-conforto" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Zona de Conforto, Resistência e Autoengano: Por que Sabemos o que Fazer, mas Não Fazemos?
         </h2>
@@ -464,7 +702,7 @@
       </article>
 
          <!-- ARTIGOS ANTERIORES ABAIXO -->
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-gigantes-brigam" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Enquanto os Gigantes Brigam, as Startups se Movem: Oportunidades na Guerra Bilionária da IA
         </h2>
@@ -491,7 +729,7 @@
         </p>
       </article>
    
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-ia-financas" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           🧠 IA em Finanças Corporativas: O Que Já Funciona na Prática (e o Que Ainda É Hype)
         </h2>
@@ -519,7 +757,7 @@
         </p>
       </article>
 
-          <article class="mb-12 border-b border-border pb-8">
+          <article id="artigo-guerra-300-milhoes" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           A Guerra dos US$ 300 Milhões: A Revolução das Big Techs no Mercado de Trabalho em IA
         </h2>
@@ -572,7 +810,7 @@
         </p>
       </article>
 
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-tecnologia-burocracia" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Tecnologia, Burocracia e a Falácia do Mal Absoluto
         </h2>
@@ -611,7 +849,7 @@
         </p>
       </article>
 
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-empatia-escala" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           Empatia em Escala: A Nova Fronteira da Experiência do Cliente
         </h2>
@@ -660,7 +898,7 @@
         </p>
       </article>
 
-      <article class="mb-12 border-b border-border pb-8">
+      <article id="artigo-ia-presente" class="mb-12 border-b border-border pb-8">
         <h2 class="text-2xl font-semibold text-foreground mt-0 mb-2">
           IA não é o futuro — é o que sua empresa está perdendo no presente
         </h2>
@@ -693,5 +931,123 @@
   <footer class="text-center text-sm text-muted-foreground py-8">
     &copy; 2025 SXS Consultoria
   </footer>
+
+  <script>
+    // Funcionalidade do sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('blogSidebar');
+      const mainContent = document.getElementById('mainContent');
+      const isHidden = sidebar.classList.contains('hidden');
+      
+      if (isHidden) {
+        sidebar.classList.remove('hidden');
+        mainContent.classList.remove('expanded');
+      } else {
+        sidebar.classList.add('hidden');
+        mainContent.classList.add('expanded');
+      }
+    }
+
+    // Smooth scroll para os artigos
+    function setupSmoothScroll() {
+      const articleLinks = document.querySelectorAll('.article-link');
+      
+      articleLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
+            });
+            
+            // Atualizar link ativo
+            updateActiveLink(this);
+          }
+        });
+      });
+    }
+
+    // Atualizar link ativo
+    function updateActiveLink(activeLink) {
+      // Remover classe active de todos os links
+      document.querySelectorAll('.article-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Adicionar classe active ao link clicado
+      activeLink.classList.add('active');
+    }
+
+    // Detectar artigo visível durante scroll
+    function setupScrollObserver() {
+      const articles = document.querySelectorAll('article[id^="artigo-"]');
+      const articleLinks = document.querySelectorAll('.article-link');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const articleId = entry.target.id;
+            const correspondingLink = document.querySelector(`[href="#${articleId}"]`);
+            
+            if (correspondingLink) {
+              // Remover active de todos os links
+              articleLinks.forEach(link => link.classList.remove('active'));
+              // Adicionar active ao link correspondente
+              correspondingLink.classList.add('active');
+            }
+          }
+        });
+      }, {
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      });
+
+      articles.forEach(article => {
+        observer.observe(article);
+      });
+    }
+
+    // Responsividade do sidebar
+    function setupResponsiveSidebar() {
+      const sidebar = document.getElementById('blogSidebar');
+      const mainContent = document.getElementById('mainContent');
+      
+      function checkScreenSize() {
+        if (window.innerWidth <= 1200) {
+          // Em telas menores, esconder sidebar por padrão
+          sidebar.classList.add('hidden');
+          mainContent.classList.add('expanded');
+        } else {
+          // Em telas maiores, mostrar sidebar por padrão
+          sidebar.classList.remove('hidden');
+          mainContent.classList.remove('expanded');
+        }
+      }
+      
+      // Verificar no carregamento
+      checkScreenSize();
+      
+      // Verificar no redimensionamento
+      window.addEventListener('resize', checkScreenSize);
+    }
+
+    // Inicializar todas as funcionalidades
+    document.addEventListener('DOMContentLoaded', function() {
+      setupSmoothScroll();
+      setupScrollObserver();
+      setupResponsiveSidebar();
+      
+      // Definir o primeiro artigo como ativo inicialmente
+      const firstLink = document.querySelector('.article-link');
+      if (firstLink) {
+        firstLink.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
