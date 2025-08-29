@@ -23,8 +23,8 @@ const translations = {
     'nav.contact': 'Contact',
     
     // Hero
-    'hero.title': 'Expert Consulting for Complex Financial Markets',
-    'hero.subtitle': 'Business development and financial services for companies operating globally',
+    'hero.title': 'We Transform Businesses with Artificial Intelligence',
+    'hero.subtitle': 'From financial consulting to digital transformation: we help companies modernize management, automate processes and grow more efficiently.',
     'hero.cta': 'Get in touch',
     
     // Services
@@ -92,8 +92,8 @@ const translations = {
     'nav.contact': 'Contato',
     
     // Hero
-    'hero.title': 'Consultoria Especializada para Mercados Financeiros Complexos',
-    'hero.subtitle': 'Desenvolvimento de negócios e serviços financeiros para empresas que operam globalmente',
+    'hero.title': 'Transformamos Negócios com Inteligência Artificial',
+    'hero.subtitle': 'Da consultoria financeira à transformação digital: ajudamos empresas a modernizar gestão, automatizar processos e crescer com mais eficiência.',
     'hero.cta': 'Entre em contato',
     
     // Services
